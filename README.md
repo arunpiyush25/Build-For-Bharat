@@ -36,30 +36,24 @@ These datasets vary in structure and schema, making cross-domain insights diffic
 
 ---
 
-## 🏗️ System Architecture
+## 🔄 Workflow Overview
 
-┌──────────────────────────────┐
-│ User Query (Natural Language) │
-└──────────────┬───────────────┘
-│
-▼
-┌─────────────────────┐
-│ Gemini 2.0 Flash LLM│
-│ (Intent Extraction) │
-└──────────┬──────────┘
-│
-▼
-┌─────────────────────────┐
-│ 📊 Computation Results of the Query │
-│ (via Pandas Library) │
-└──────────┬──────────────┘
-│
-▼
-┌───────────────────────────┐
-│ LLM call agein for Human-Readable Answer │
-│ (with citations of datasets) │
-└───────────────────────────┘
+The end-to-end workflow of **Project Samarth** operates in four intelligent stages:
 
+1. **🧑‍💬 User Query Input**  
+   - User enters a natural language question like *“Which state had the highest rice yield last year?”*  
+
+2. **🧠 Intent Extraction (Gemini 2.0 Flash)**  
+   - The Gemini LLM parses the query to identify the type of task (comparison, trend, correlation, etc.)  
+   - Generates a structured JSON intent specifying what data to fetch and what to compute.
+
+3. **📊 Data Fetching & Computation (Pandas + APIs)**  
+   - The system queries live government datasets via the **Data.gov.in API**.  
+   - Relevant data is preprocessed, merged, and computed using **Pandas**.
+
+4. **💬 Final Answer Generation (Gemini)**  
+   - The computed results are passed back to Gemini for human-readable summarization.  
+   - The answer includes insights, context, and dataset citations for full transparency.
 
 ---
 
@@ -71,7 +65,7 @@ These datasets vary in structure and schema, making cross-domain insights diffic
 | **Frontend** | Gradio (in Colab) |
 | **Backend** | Python |
 | **Data Handling** | Pandas |
-| **APIs & Datasets** | Data.gov.in [IMD]([https://www.data.gov.in/resource/district-wise-season-wise-crop-production-statistics-1997](https://www.data.gov.in/resource/sub-divisional-monthly-rainfall-1901-2017)) + [Agriculture datasets](https://www.data.gov.in/resource/district-wise-season-wise-crop-production-statistics-1997) |
+| **APIs** | Data.gov.in APIs |
 | **Automation** | Colab Scheduler (daily at 1 AM) |
 
 ---
@@ -160,7 +154,7 @@ A simple and clean interface that lets users:
 
 ## 🧑‍💻 Author
 
-**Arun [@arunpiyush25]**  
+**Piyush Arun [@arunpiyush25]**  
 📍 M.Tech, Computer Science & Engineering — NIT Calicut  
 🚀 Passionate about GenAI, Multi Agent systems, RAG, Langchain, LLMs, etc
 
@@ -168,7 +162,7 @@ A simple and clean interface that lets users:
 
 ## 🏆 Acknowledgements
 
-- [data.gov.in](https://data.gov.in) — Government of India Open Data Platform  
+- [data.gov.in](https://data.gov.in)
 - [India Meteorological Department](https://mausam.imd.gov.in)  
 - [Ministry of Agriculture & Farmers Welfare](https://agricoop.gov.in)  
 - [Gemini API by Google DeepMind](https://ai.google.dev)  
